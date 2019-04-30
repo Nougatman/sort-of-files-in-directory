@@ -34,6 +34,7 @@ def go_to_the_main_directory():
          # Compile a list of all files in main directory.
         files_of_main_dir.clear()
         files_of_main_dir.extend(glob.glob('*.*'))
+        print("\nCount of files in main directory: ", len(files_of_main_dir))
 
  # Creating directories for sorting.
 def create_directories():
@@ -47,20 +48,26 @@ def create_directories():
 
  # Sort of files.
 def sort_of_files():
-    for i in files_of_main_dir:
-         # Sort of graphics.
+    for i in reversed(files_of_main_dir):
         for k in graphics:
             if i.endswith(k):
                 shutil.move(i, graphics_dir)
-         # Sort of archives.
+                files_of_main_dir.clear()
+                files_of_main_dir.extend(glob.glob('*.*'))
+    for i in reversed(files_of_main_dir):
         for k in archives:
             if i.endswith(k):
                 shutil.move(i, archives_dir)
-         # Sort of documents.
+                files_of_main_dir.clear()
+                files_of_main_dir.extend(glob.glob('*.*'))
+    for i in reversed(files_of_main_dir):
         for k in documents:
             if i.endswith(k):
                 shutil.move(i, documents_dir)
-    files_of_main_dir.clear()
+                files_of_main_dir.clear()
+                files_of_main_dir.extend(glob.glob('*.*'))
+    #print(files_of_main_dir)
+    #files_of_main_dir.clear()
     print("Sorting is complete.\n")
 
 #go_to_the_main_directory()
@@ -82,8 +89,7 @@ def main():
             print("Oops!  That was no valid number.  Try again...")
     if x == 0:
         os.system('cls')
-    if x == 1:
-        print("yes")
+    elif x == 1:
         go_to_the_main_directory()
     elif x == 2:
         go_to_the_main_directory()
