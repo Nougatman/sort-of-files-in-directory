@@ -10,9 +10,9 @@ import sys
 
 
 main_directory = "D:\\test_dir"
-graphics_dir = main_directory + r"\graphics"
-archives_dir = main_directory + r"\archives"
-documents_dir = main_directory + r"\documents"
+graphics_dir = "graphics"
+archives_dir = "archives"
+documents_dir = "documents"
 
  # File extension lists by category.
 graphics = ['.png', '.jpg', '.jpeg', '.bmp']
@@ -21,6 +21,7 @@ documents = ['.fb2', '.pdf', '.doc', '.docx', '.xml', '.txt', '.md']
 
  # List of all files in main directory.
 files_of_main_dir = []
+files_moved = []
  
  # Go to the main directory. 
 def go_to_the_main_directory():
@@ -48,31 +49,22 @@ def create_directories():
 
  # Sort of files.
 def sort_of_files():
-    for i in reversed(files_of_main_dir):
+    for i in files_of_main_dir:
         for k in graphics:
             if i.endswith(k):
+                files_moved.append(i)
                 shutil.move(i, graphics_dir)
-                files_of_main_dir.clear()
-                files_of_main_dir.extend(glob.glob('*.*'))
-    for i in reversed(files_of_main_dir):
         for k in archives:
             if i.endswith(k):
+                files_moved.append(i)
                 shutil.move(i, archives_dir)
-                files_of_main_dir.clear()
-                files_of_main_dir.extend(glob.glob('*.*'))
-    for i in reversed(files_of_main_dir):
         for k in documents:
             if i.endswith(k):
+                files_moved.append(i)
                 shutil.move(i, documents_dir)
-                files_of_main_dir.clear()
-                files_of_main_dir.extend(glob.glob('*.*'))
-    #print(files_of_main_dir)
-    #files_of_main_dir.clear()
+    print("Moved {} file(-s)\n".format(len(files_moved)))
+    files_moved.clear()
     print("Sorting is complete.\n")
-
-#go_to_the_main_directory()
-#create_directories()
-#sort_of_files()
 
 def main():
      # Main menu of program.
