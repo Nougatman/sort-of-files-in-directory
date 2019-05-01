@@ -35,9 +35,8 @@ def go_to_the_main_directory(main_directory):
         files_of_main_dir.extend(glob.glob('*.*'))
         print("\nCount of files in main directory: ", len(files_of_main_dir))
 
-        # Creating directories for sorting.
 
-
+# Creating directories for sorting.
 def create_directories():
     if not os.path.exists(graphics_dir):
         os.makedirs(graphics_dir)
@@ -47,9 +46,7 @@ def create_directories():
         os.makedirs(documents_dir)
     print("\nDirectories for sorting files ready.")
 
-    # Sort of files.
-
-
+# Sort of files.
 def sort_of_files():
     for i in sorted(files_of_main_dir):
         for k in graphics:
@@ -80,30 +77,34 @@ def sort_of_files():
 
 
 # Main menu of program.
-while True:
-    try:
-        x = int(input('''\nSelect the desired action:
-                    0 - Clear console.
-                    1 - List all files in the selected directory.
-                    2 - Start sorting.
-                    3 - Stop the program.\n'''))
-        break
-    except ValueError:
+def main():
+    while True:
+        try:
+            x = int(input('''\nSelect the desired action:
+                        0 - Clear console.
+                        1 - List all files in the selected directory.
+                        2 - Start sorting.
+                        3 - Stop the program.\n'''))
+            break
+        except ValueError:
+            os.system('cls')
+            print("Oops!  That was no valid number.  Try again...")
+    if x == 0:
         os.system('cls')
-        print("Oops!  That was no valid number.  Try again...")
-if x == 0:
-    os.system('cls')
-elif x == 1:
-    main_directory = input('input main directory: ')
-    go_to_the_main_directory(main_directory)
-elif x == 2:
-    main_directory = input('input main directory: ')
-    go_to_the_main_directory(main_directory)
-    create_directories()
-    sort_of_files()
-elif x == 3:
-    print("\nProgram stopped.\n")
-    sys.exit(0)
-else:
-    os.system('cls')
-    print("Invalid input. Repeat input.\n")
+    elif x == 1:
+        main_directory = input('input main directory: ')
+        go_to_the_main_directory(main_directory)
+    elif x == 2:
+        main_directory = input('input main directory: ')
+        go_to_the_main_directory(main_directory)
+        create_directories()
+        sort_of_files()
+    elif x == 3:
+        print("\nProgram stopped.\n")
+        sys.exit(0)
+    else:
+        os.system('cls')
+        print("Invalid input. Repeat input.\n")
+    main()
+
+main()
