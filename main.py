@@ -1,3 +1,4 @@
+<<<<<<< pull
 """
     This program sorts files in the specified directory by file extension.
 """
@@ -41,8 +42,7 @@ def go_to_the_main_directory(main_directory):
         files_of_main_dir.clear()
         files_of_main_dir.extend(glob.glob('*.*'))
         print("\nCount of files in main directory: ", len(files_of_main_dir))
-        return True
-
+        
 
 # Creating directories for sorting.
 def create_directories():
@@ -113,3 +113,36 @@ while True:
         # Строка изменена для мультиплатформенности
         os.system('cls' if os.name=='nt' else 'clear')
         print("Invalid input. Repeat input.\n")
+=======
+def main():
+    while True:
+        try:
+            x = int(input('''\nSelect the desired action:
+                        0 - Clear console.
+                        1 - List all files in the selected directory.
+                        2 - Start sorting.
+                        3 - Stop the program.\n'''))
+            break
+        except ValueError:
+            os.system('cls')
+            print("Oops!  That was no valid number.  Try again...")
+    if x == 0:
+        os.system('cls')
+    elif x == 1:
+        main_directory = input('input main directory: ')
+        go_to_the_main_directory(main_directory)
+    elif x == 2:
+        main_directory = input('input main directory: ')
+        go_to_the_main_directory(main_directory)
+        create_directories()
+        sort_of_files()
+    elif x == 3:
+        print("\nProgram stopped.\n")
+        sys.exit(0)
+    else:
+        os.system('cls')
+        print("Invalid input. Repeat input.\n")
+    main()
+
+main()
+>>>>>>> master
