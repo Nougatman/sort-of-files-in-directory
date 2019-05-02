@@ -1,4 +1,3 @@
-<<<<<<< pull
 """
     This program sorts files in the specified directory by file extension.
 """
@@ -145,4 +144,3 @@ def main():
     main()
 
 main()
->>>>>>> master
